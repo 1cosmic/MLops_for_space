@@ -1,0 +1,5 @@
+---
+hostname: stage-server
+swap_size: 1G
+# ansible_user: root
+ansible_user: ansible

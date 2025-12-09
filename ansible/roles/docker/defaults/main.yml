@@ -1,0 +1,4 @@
+---
+# defaults file for docker
+users_to_docker_group:
+  - ansible

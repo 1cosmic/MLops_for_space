@@ -1,0 +1,6 @@
+---
+- hosts: stage_server
+  roles:
+    # - { role: 'embed_ansible_user' } 
+    - { role: 'common' } 
+    - { role: 'docker' } 

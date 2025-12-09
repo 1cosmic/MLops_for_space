@@ -1,0 +1,3 @@
+---
+# defaults file for embed_ansible_user
+ansible_user_name: ansible

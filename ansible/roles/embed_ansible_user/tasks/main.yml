@@ -1,0 +1,38 @@
+---
+# tasks file for embed_ansible_user
+- block:
+  - name: create user & provide of ssh-keys
+    user:
+      name: "{{ ansible_user_name }}"
+      state: present
+      shell: /bin/bash
+
+  - name: create .ssh folder
+    file:
+      path: "/home/{{ ansible_user_name }}/.ssh"
+      state: directory
+      owner: "{{ ansible_user_name }}"
+      group: "{{ ansible_user_name }}"
+      mode: '0700'
+  
+  - name: "copy ssh-key to ~/.ssh/{{ ansible_user_name }}"
+    ansible.builtin.authorized_key:
+      user: "{{ ansible_user_name }}"
+      state: present
+      key: "{{ lookup('file', '~/.ssh/id_rsa.pub')}}"
+
+  - name: "Add {{ ansible_user_name }} in sudo-group"
+    ansible.builtin.user:
+      name: "{{ ansible_user_name }}"
+      groups: sudo
+      append: yes
+
+  - name: "fuck sudo password required"
+    copy:
+      dest: /etc/sudoers.d/ansible
+      content: "ansible ALL=(ALL) NOPASSWD:ALL"
+      mode: '0440'
+      
+  # primary settings to all block
+  become: true
+  become_user: root

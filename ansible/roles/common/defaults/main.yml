@@ -1,0 +1,12 @@
+timezone_name: Europe/Moscow
+swapfile: swapfile
+swappath: /
+packages:
+  - git
+  - htop
+  - btop
+  - net-tools
+  - wget
+  - mc
+manager_users:
+  - docker

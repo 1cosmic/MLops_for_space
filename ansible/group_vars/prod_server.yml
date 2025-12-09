@@ -1,0 +1,5 @@
+---
+hostname: prod-server
+swap_size: 2g
+# ansible_user: root
+ansible_user: ansible
